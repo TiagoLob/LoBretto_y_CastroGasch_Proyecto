@@ -13,7 +13,7 @@ class DepartamentoFormulario(forms.Form):
     en_Edificio = forms.CharField(max_length=30)
     piso_Y_Letra = forms.CharField(max_length=3)
     cantidad_De_Ambientes = forms.IntegerField()
-    esta_Ocupado = forms.BooleanField()
+    esta_Ocupado = forms.BooleanField(required=False)
 
 class InquilinoFormulario(forms.Form):
 

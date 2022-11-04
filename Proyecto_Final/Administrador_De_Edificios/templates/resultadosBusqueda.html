@@ -1,0 +1,29 @@
+{% extends "padre.html"%}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<br>
+
+<h3>Estamos buscando departamentos en : {{edificio}}</h3>
+
+{% if departamentos %}
+
+<ul>
+{% for departamento in departamentos %}
+
+    <li> Departamento: {{departamento.piso_Y_Letra}}</li>
+    <li> Cantidad de ambientes: {{ departamento.cantidad_De_Ambientes}}</li>
+    <li> Esta disponible? (True = Disponible): {{ departamento.esta_Ocupado}}</li>
+
+    <HR width="75%" size="10">
+
+{% endfor %}
+</ul>
+
+{% endif %}
+
+<br>
+
+{% endblock %}
