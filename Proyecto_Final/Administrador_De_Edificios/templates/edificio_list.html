@@ -1,0 +1,33 @@
+{% extends "padre.html"%}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<br>
+
+<h1>Lista de Edificios </h1>
+
+<br>
+
+<ul>
+
+        {% for edificio in edificios %}
+        <li>
+            <a href ="{% url 'DetalleEdificio' edificio.id %}">
+           {{edificio.nombre}}
+            </a>
+        </li>
+
+        <br>
+
+        {% endfor %}
+
+</ul>
+
+<button><a href="{% url 'CrearEdificio'%}"> Añadir un edificio </a></button>
+
+<br>
+<br>
+
+{% endblock %}

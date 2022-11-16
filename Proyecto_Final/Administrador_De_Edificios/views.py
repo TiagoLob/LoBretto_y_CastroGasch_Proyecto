@@ -6,6 +6,12 @@ from .forms import EdificioFormulario, DepartamentoFormulario, InquilinoFormular
 
 from django.http import HttpResponse
 
+from django.views.generic import ListView
+
+from django.views.generic.detail import DetailView
+
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
 # Create your views here.
 
 def inicio(request):
@@ -104,5 +110,34 @@ def buscar(request):
     return HttpResponse(respuesta)
 
 
+class EdificioList(ListView):
 
+    model = Edificio
+    template_name = "edificio_list.html"
+    context_object_name = "edificios"
 
+class EdificioDetalle(DetailView):
+
+    model = Edificio
+    template_name = "edificio_detalle.html"
+    context_object_name = "edificio"
+
+class EdificioCreacion(CreateView):
+
+    model = Edificio
+    template_name = "edificio_crear.html"
+    success_url = "/BlogDepAdmin/lista-edificios"
+    fields = ['nombre', 'calle', 'cantidad_De_Pisos', 'cantidad_De_Departamentos', 'tiene_SUM']
+
+class EdificioUpdate(UpdateView):
+
+    model = Edificio
+    template_name = "edificio_modificar.html"
+    success_url = "/BlogDepAdmin/lista-edificios"
+    fields = ['nombre', 'calle', 'cantidad_De_Pisos', 'cantidad_De_Departamentos', 'tiene_SUM']
+
+class EdificioDelete(DeleteView):
+
+    model = Edificio
+    template_name = "edificio_borrar.html"
+    success_url = "/BlogDepAdmin/lista-edificios"
