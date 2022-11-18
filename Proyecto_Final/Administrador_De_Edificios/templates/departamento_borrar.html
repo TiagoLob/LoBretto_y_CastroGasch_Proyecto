@@ -1,0 +1,20 @@
+{% extends "padre.html"%}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<br>
+
+    <form action="{% url 'BorrarDepartamento' departamento.id %}" method="POST"> {% csrf_token %}
+
+        <p> Esta seguro que desea eliminar el departamento? </p>
+
+        <button type="submit">Confirmar</button>
+        <button><a href="{% url 'ListaDepartamentos' %}">Cancelar</a></button>
+   
+    </form>
+
+<br>
+
+{% endblock %}  

@@ -34,4 +34,4 @@ class Inquilino(models.Model):
     vive_En_Departamento = models.CharField(max_length=3) 
 
     def __str__(self):
-        return f"Nombre: {self.nombre} - Apellido: {self.apellido} - Celular: {self.celular} - Mail: {self.mail} - Profesion: {self.profesion} - Vive en el edificio: {self.vive_En_Edificio}, Vive en el departamento: {self.vive_En_Departamento}"
+        return f"Nombre: {self.nombre} - Apellido: {self.apellido} - Celular: {self.celular} - Mail: {self.mail} - Profesion: {self.profesion} - Vive en el edificio: {self.vive_En_Edificio} - Vive en el departamento: {self.vive_En_Departamento}"

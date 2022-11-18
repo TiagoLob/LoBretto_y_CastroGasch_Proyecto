@@ -1,0 +1,20 @@
+{% extends "padre.html"%}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<br>
+
+    <form action="{% url 'BorrarInquilino' inquilino.id %}" method="POST"> {% csrf_token %}
+
+        <p> Esta seguro que desea eliminar al inquilino? </p>
+
+        <button type="submit">Confirmar</button>
+        <button><a href="{% url 'ListaInquilinos' %}">Cancelar</a></button>
+   
+    </form>
+
+<br>
+
+{% endblock %}  

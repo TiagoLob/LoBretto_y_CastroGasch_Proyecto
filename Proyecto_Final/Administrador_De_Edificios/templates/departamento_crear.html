@@ -6,11 +6,11 @@
 
 <br>
 
-    <form action="{% url 'ModificarEdificio' edificio.id %}" method="POST"> {% csrf_token %}
+    <form action="{% url 'CrearDepartamento' %}" method="POST"> {% csrf_token %}
 
         {{ form.as_p }}
 
-        <input type="submit" value="Actualizar">
+        <input type="submit" value="Crear">
 
     </form>
 

@@ -6,7 +6,7 @@
 
 <br>
 
-    <form action="{% url 'ModificarEdificio' edificio.id %}" method="POST"> {% csrf_token %}
+    <form action="{% url 'ModificarDepartamento' departamento.id %}" method="POST"> {% csrf_token %}
 
         {{ form.as_p }}
 

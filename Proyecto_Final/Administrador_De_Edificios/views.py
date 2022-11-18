@@ -18,78 +18,6 @@ def inicio(request):
 
     return render (request, "inicio.html")
 
-def agregarDepartamento(request):
-
-    if request.method == 'POST':
-
-        miFormulario = DepartamentoFormulario(request.POST)
-
-        print(miFormulario)
-
-        if miFormulario.is_valid:
-
-            informacion = miFormulario.cleaned_data
-
-            departamento = Departamento (en_Edificio=informacion['en_Edificio'], piso_Y_Letra=informacion['piso_Y_Letra'], cantidad_De_Ambientes=informacion['cantidad_De_Ambientes'], esta_Ocupado=informacion['esta_Ocupado'])
-
-            departamento.save()
-
-            return render(request, "agregadoConExito.html")
-
-    else:
-
-        miFormulario = DepartamentoFormulario()
-
-    return render (request, "agregarDepartamento.html", {"miFormulario":miFormulario})
-
-def agregarEdificio(request):
-
-    if request.method == 'POST':
-
-        miFormulario = EdificioFormulario(request.POST)
-
-        print(miFormulario)
-
-        if miFormulario.is_valid:
-
-            informacion = miFormulario.cleaned_data
-
-            edificio = Edificio (nombre=informacion['nombre'], calle=informacion['calle'], cantidad_De_Pisos=informacion['cantidad_De_Pisos'], cantidad_De_Departamentos=informacion['cantidad_De_Departamentos'], tiene_SUM=informacion['tiene_SUM'])
-
-            edificio.save()
-
-            return render(request, "agregadoConExito.html")
-
-    else:
-
-        miFormulario = EdificioFormulario()
-
-    return render (request, "agregarEdificio.html", {"miFormulario":miFormulario})
-
-def agregarInquilino(request):
-
-    if request.method == 'POST':
-
-        miFormulario = InquilinoFormulario(request.POST)
-
-        print(miFormulario)
-
-        if miFormulario.is_valid:
-
-            informacion = miFormulario.cleaned_data
-
-            inquilino = Inquilino (nombre=informacion['nombre'], apellido=informacion['apellido'], celular=informacion['celular'], mail=informacion['mail'], profesion=informacion['profesion'], vive_En_Edificio=informacion['vive_En_Edificio'], vive_En_Departamento=informacion['vive_En_Departamento'])
-
-            inquilino.save()
-
-            return render(request, "agregadoConExito.html")
-    
-    else:
-        
-        miFormulario = InquilinoFormulario()
-
-    return render (request, "agregarInquilino.html", {"miFormulario": miFormulario})
-
 def busquedaDepartamentosPorEdificio(request):
 
     return render (request, "busquedaDepartamentosPorEdificio.html")
@@ -134,10 +62,74 @@ class EdificioUpdate(UpdateView):
     model = Edificio
     template_name = "edificio_modificar.html"
     success_url = "/BlogDepAdmin/lista-edificios"
-    fields = ['nombre', 'calle', 'cantidad_De_Pisos', 'cantidad_De_Departamentos', 'tiene_SUM']
+    fields = ('__all__')
 
 class EdificioDelete(DeleteView):
 
     model = Edificio
     template_name = "edificio_borrar.html"
     success_url = "/BlogDepAdmin/lista-edificios"
+
+class DepartamentoList(ListView):
+
+    model = Departamento
+    template_name = "departamento_list.html"
+    context_object_name = "departamentos"
+
+class DepartamentoDetalle(DetailView):
+
+    model = Departamento
+    template_name = "departamento_detalle.html"
+    context_object_name = "departamento"
+
+class DepartamentoCreacion(CreateView):
+
+    model = Departamento
+    template_name = "departamento_crear.html"
+    success_url = "/BlogDepAdmin/lista-departamentos"
+    fields = ('__all__')
+
+class DepartamentoUpdate(UpdateView):
+
+    model = Departamento
+    template_name = "departamento_modificar.html"
+    success_url = "/BlogDepAdmin/lista-departamentos"
+    fields = ('__all__')
+
+class DepartamentoDelete(DeleteView):
+
+    model = Departamento
+    template_name = "departamento_borrar.html"
+    success_url = "/BlogDepAdmin/lista-departamentos"
+
+class InquilinoList(ListView):
+
+    model = Inquilino
+    template_name = "inquilino_list.html"
+    context_object_name = "inquilinos"
+
+class InquilinoDetalle(DetailView):
+
+    model = Inquilino
+    template_name = "inquilino_detalle.html"
+    context_object_name = "inquilino"
+
+class InquilinoCreacion(CreateView):
+
+    model = Inquilino
+    template_name = "inquilino_crear.html"
+    success_url = "/BlogDepAdmin/lista-inquilinos"
+    fields = ('__all__')
+
+class InquilinoUpdate(UpdateView):
+
+    model = Inquilino
+    template_name = "inquilino_modificar.html"
+    success_url = "/BlogDepAdmin/lista-inquilinos"
+    fields = ('__all__')
+
+class InquilinoDelete(DeleteView):
+
+    model = Inquilino
+    template_name = "inquilino_borrar.html"
+    success_url = "/BlogDepAdmin/lista-inquilinos"

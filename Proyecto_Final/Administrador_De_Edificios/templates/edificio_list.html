@@ -18,6 +18,14 @@
            {{edificio.nombre}}
             </a>
         </li>
+        <div>
+            <button>
+                <a href="{% url 'ModificarEdificio' edificio.id %}"> Modificar </a>
+            </button>
+            <button>
+                <a href="{% url 'BorrarEdificio' edificio.id %}"> Eliminar </a>
+            </button>
+        </div>
 
         <br>
 

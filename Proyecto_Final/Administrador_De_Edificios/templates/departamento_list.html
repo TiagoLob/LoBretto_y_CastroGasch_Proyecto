@@ -1,0 +1,41 @@
+{% extends "padre.html"%}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<br>
+
+<h1>Lista de Departamentos </h1>
+
+<br>
+
+<ul>
+
+        {% for departamento in departamentos %}
+        <li>
+            <a href ="{% url 'DetalleDepartamento' departamento.id %}">
+           Departamento: {{departamento.piso_Y_Letra}} - En edificio : {{departamento.en_Edificio}}
+            </a>
+        </li>
+        <div>
+            <button>
+                <a href="{% url 'ModificarDepartamento' departamento.id %}"> Modificar </a>
+            </button>
+            <button>
+                <a href="{% url 'BorrarDepartamento' departamento.id %}"> Eliminar </a>
+            </button>
+        </div>
+
+        <br>
+
+        {% endfor %}
+
+</ul>
+
+<button><a href="{% url 'CrearDepartamento'%}"> Añadir un departamento </a></button>
+
+<br>
+<br>
+
+{% endblock %}
