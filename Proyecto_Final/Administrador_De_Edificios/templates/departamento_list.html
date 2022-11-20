@@ -18,6 +18,7 @@
            Departamento: {{departamento.piso_Y_Letra}} - En edificio : {{departamento.en_Edificio}}
             </a>
         </li>
+        {% if user.is_staff %}
         <div>
             <button>
                 <a href="{% url 'ModificarDepartamento' departamento.id %}"> Modificar </a>
@@ -26,6 +27,7 @@
                 <a href="{% url 'BorrarDepartamento' departamento.id %}"> Eliminar </a>
             </button>
         </div>
+        {% endif %}
 
         <br>
 
@@ -33,7 +35,11 @@
 
 </ul>
 
+{% if user.is_staff %}
+
 <button><a href="{% url 'CrearDepartamento'%}"> Añadir un departamento </a></button>
+
+{% endif %}
 
 <br>
 <br>

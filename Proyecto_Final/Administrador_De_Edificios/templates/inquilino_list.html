@@ -15,7 +15,7 @@
         {% for inquilino in inquilinos %}
         <li>
             <a href ="{% url 'DetalleInquilino' inquilino.id %}">
-           Inquilino: {{inquilino.nombre}} {{inquilino.apellido}}
+           Inquilino: {{inquilino.nombre}} {{inquilino.apellido}} - Edificio: {{inquilino.vive_En_Edificio}}
             </a>
         </li>
         <div>

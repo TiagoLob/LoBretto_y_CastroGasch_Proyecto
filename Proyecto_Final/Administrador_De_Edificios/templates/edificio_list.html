@@ -18,6 +18,7 @@
            {{edificio.nombre}}
             </a>
         </li>
+        {% if user.is_staff %}
         <div>
             <button>
                 <a href="{% url 'ModificarEdificio' edificio.id %}"> Modificar </a>
@@ -26,14 +27,16 @@
                 <a href="{% url 'BorrarEdificio' edificio.id %}"> Eliminar </a>
             </button>
         </div>
-
+        {% endif %}
         <br>
 
         {% endfor %}
 
 </ul>
 
+{% if user.is_staff %}
 <button><a href="{% url 'CrearEdificio'%}"> Añadir un edificio </a></button>
+{% endif %}
 
 <br>
 <br>
