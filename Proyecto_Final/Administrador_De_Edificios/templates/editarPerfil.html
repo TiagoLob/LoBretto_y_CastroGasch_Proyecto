@@ -1,0 +1,29 @@
+{% extends "padre.html"%}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<br>
+
+<h1>Editando perfil de {{usuario}}</h1>
+
+<br>
+
+    <form action="" method="POST"> {% csrf_token %}
+
+        <table>
+
+            {{ miFormulario.as_table }}
+        
+        </table>
+
+        {{mensaje}}
+        
+        <input type="submit", value="Actualizar">
+
+    </form>
+
+<br>
+
+{% endblock %}

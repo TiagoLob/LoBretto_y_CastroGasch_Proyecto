@@ -1,8 +1,10 @@
 from django.shortcuts import render
 
-from .models import Edificio, Departamento, Inquilino
+from .models import Edificio, Departamento, Inquilino, Avatar
 
 from django.http import HttpResponse
+
+from .forms import UserEditForm
 
 from django.views.generic import ListView
 
@@ -16,11 +18,15 @@ from django.contrib.auth import login, logout, authenticate
 
 from django.contrib.auth.mixins import PermissionRequiredMixin
 
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 
+@login_required
 def inicio(request):
 
-    return render (request, "inicio.html")
+    avatar = Avatar.objects.get(user=request.user)
+    return render (request, "inicio.html", {"url": avatar.imagen.url})
 
 def busquedaDepartamentosPorEdificio(request):
 
@@ -206,3 +212,39 @@ def register (request):
         return render(request, "registro.html", {"miFormulario": miFormulario})
 
 
+def editar_perfil(request):
+
+    usuario = request.user
+
+    if request.method == 'POST':
+
+        miFormulario = UserEditForm(request.POST)
+
+        if miFormulario.is_valid():
+
+            informacion = miFormulario.cleaned_data
+
+            usuario.first_name = informacion['first_name']
+            usuario.last_name = informacion['last_name']
+            usuario.email = informacion['email']
+            usuario.set_password(informacion['password1'])
+
+            usuario.save()
+
+            return render(request, "inicio.html", {"mensaje": f'Datos actualizados'})
+
+        return render(request,"editarPerfil.html",{"mensaje": "Contraseñas no coinciden"} )
+
+    else:
+
+        miFormulario = UserEditForm(instance=request.user)
+
+    return render(request, "editarPerfil.html", {"miFormulario": miFormulario, "usuario":usuario})
+
+def terminosYCondiciones(request):
+
+    return render (request, "terminosYCondiciones.html")
+
+def sobreNosotros(request):
+
+    return render (request, "sobreNosotros.html")

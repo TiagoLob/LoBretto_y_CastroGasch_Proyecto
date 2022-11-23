@@ -2,7 +2,7 @@ from django.urls import path
 
 from django.contrib.auth.views import LogoutView
 
-from .views import inicio, login_request ,busquedaDepartamentosPorEdificio,buscar,register,EdificioList,EdificioDetalle,EdificioCreacion,EdificioUpdate,EdificioDelete,DepartamentoList,DepartamentoDetalle,DepartamentoCreacion,DepartamentoUpdate,DepartamentoDelete,InquilinoList,InquilinoDetalle,InquilinoCreacion,InquilinoUpdate,InquilinoDelete
+from .views import inicio, login_request,busquedaDepartamentosPorEdificio,buscar,editar_perfil,register,terminosYCondiciones, sobreNosotros,EdificioList,EdificioDetalle,EdificioCreacion,EdificioUpdate,EdificioDelete,DepartamentoList,DepartamentoDetalle,DepartamentoCreacion,DepartamentoUpdate,DepartamentoDelete,InquilinoList,InquilinoDetalle,InquilinoCreacion,InquilinoUpdate,InquilinoDelete
 
 
 urlpatterns = [
@@ -26,6 +26,9 @@ urlpatterns = [
     path('borrar-inquilino/<pk>', InquilinoDelete.as_view(), name="BorrarInquilino"),
     path('login', login_request, name="Login"),
     path('registrar', register, name="Registrar"),
-    path('logout', LogoutView.as_view(template_name="logout.html"), name="Logout")
+    path('logout', LogoutView.as_view(template_name="logout.html"), name="Logout"),
+    path('editarPerfil', editar_perfil, name="EditarPerfil"),
+    path('terminos-y-condiciones', terminosYCondiciones, name="TerminosyCondiciones"),
+    path('sobre-nosotros', sobreNosotros, name = "SobreNosotros"),
 ]
 
