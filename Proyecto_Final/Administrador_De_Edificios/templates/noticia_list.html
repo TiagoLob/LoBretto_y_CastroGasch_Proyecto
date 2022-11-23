@@ -1,0 +1,43 @@
+{% extends "padre.html"%}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<br>
+
+<h1>Noticias</h1>
+
+<br>
+
+<ul>
+
+        {% for noticia in noticias %}
+        <li>
+          <h3>{{noticia.titulo}}</h3> <h5>{{noticia.subtitulo}}</h5><button><a href="{% url 'DetalleNoticia' noticia.id %}">Ver Noticia</a></button>
+        </li>
+        <br>
+        {% if user.is_staff %}
+        <div>
+            <button>
+                <a href="{% url 'ModificarNoticia' noticia.id %}"> Modificar </a>
+            </button>
+            <button>
+                <a href="{% url 'BorrarNoticia' noticia.id %}"> Eliminar </a>
+            </button>
+        </div>
+        {% endif %}
+        <br>
+
+        {% endfor %}
+
+</ul>
+
+{% if user.is_staff %}
+<button><a href="{% url 'CrearNoticia'%}"> Agregar noticia </a></button>
+{% endif %}
+
+<br>
+<br>
+
+{% endblock %}

@@ -21,6 +21,7 @@
                 {% if user.is_authenticated %}
                     <a class="navbar-brand" href="{% url 'Logout' %}">Logout</a>
                     <a class="navbar-brand" href="{% url 'EditarPerfil' %}">Editar Perfil</a>
+                    <img src="{{url}}" alt="avatar" width="50" height="50">
                     <p style="color:white;" >Bienvenido {{user.username}}</p>
                 {% else %}
                     <a class="navbar-brand" href="{% url 'Login' %}">Login</a>
@@ -29,7 +30,7 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="{% url 'Busqueda-Departamentos-Por-Edificio' %}">Deptos Disponibles</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'ListaNoticias' %}">Noticias</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'ListaEdificios' %}">Ver Edificios</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'ListaDepartamentos' %}">Ver Departamentos</a></li>
                         {% if user.is_staff%}

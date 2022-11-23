@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import Edificio, Departamento, Inquilino, Avatar
+from .models import Edificio, Departamento, Inquilino, Avatar, Noticia
 
 from django.http import HttpResponse
 
@@ -27,25 +27,6 @@ def inicio(request):
 
     avatar = Avatar.objects.get(user=request.user)
     return render (request, "inicio.html", {"url": avatar.imagen.url})
-
-def busquedaDepartamentosPorEdificio(request):
-
-    return render (request, "busquedaDepartamentosPorEdificio.html")
-
-def buscar(request):
-
-    if request.GET["edificio"]:
-
-        edificio = request.GET['edificio']
-        departamentos = Departamento.objects.filter(en_Edificio__icontains=edificio)
-
-        return render (request, "resultadosBusqueda.html", {"departamentos":departamentos, "edificio":edificio})
-
-    else:
-
-        respuesta = "No enviaste datos"
-
-    return HttpResponse(respuesta)
 
 class EdificioList(ListView):
 
@@ -154,6 +135,41 @@ class InquilinoDelete(PermissionRequiredMixin,DeleteView):
     template_name = "inquilino_borrar.html"
     success_url = "/BlogDepAdmin/lista-inquilinos"
 
+class NoticiaList(ListView):
+
+    model = Noticia
+    template_name = "noticia_list.html"
+    context_object_name = "noticias"
+
+class NoticiaDetalle(DetailView):
+
+    model = Noticia
+    template_name = "noticia_detalle.html"
+    context_object_name = "noticia"
+
+class NoticiaCreacion(PermissionRequiredMixin,CreateView):
+
+    model = Noticia
+    permission_required = 'is_staff'
+    template_name = "noticia_crear.html"
+    success_url = "/BlogDepAdmin/lista-noticias"
+    fields = ('__all__')
+
+class NoticiaUpdate(PermissionRequiredMixin,UpdateView):
+
+    model = Noticia
+    permission_required = 'is_staff'
+    template_name = "noticia_modificar.html"
+    success_url = "/BlogDepAdmin/lista-noticias"
+    fields = ('__all__')
+
+class NoticiaDelete(PermissionRequiredMixin,DeleteView):
+
+    model = Noticia
+    permission_required = 'is_staff'
+    template_name = "noticia_borrar.html"
+    success_url = "/BlogDepAdmin/lista-noticias"
+
 def login_request(request):
 
     if request.method == 'POST':
@@ -172,8 +188,8 @@ def login_request(request):
             if user:
 
                 login (request, user)
-
-                return render(request, "inicio.html", {"mensaje": f'Bienvenido {usuario}'})
+                avatar = Avatar.objects.get(user=request.user)
+                return render(request, "inicio.html", {"mensaje": f'Bienvenido {usuario}', "url": avatar.imagen.url})
 
             else:
 

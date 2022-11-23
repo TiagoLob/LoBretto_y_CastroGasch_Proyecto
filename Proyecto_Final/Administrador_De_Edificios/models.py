@@ -52,6 +52,14 @@ class Avatar (models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     imagen = models.ImageField(upload_to='avatares', null=True, blank=True)
 
+class Noticia(models.Model):
 
-    #  vive_En_Edificio = models.CharField(max_length=30) 
-    # vive_En_Departamento = models.CharField(max_length=3) 
+    titulo = models.CharField(max_length=254)
+    subtitulo = models.CharField(max_length=254)
+    cuerpo = models.TextField()
+    autor = models.ForeignKey(User, on_delete=models.CASCADE)
+    fecha = models.DateField()
+    imagen = models.ImageField(upload_to='noticias', null=True, blank=True)
+
+    class Meta:
+        ordering = ['-fecha']

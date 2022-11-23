@@ -2,13 +2,11 @@ from django.urls import path
 
 from django.contrib.auth.views import LogoutView
 
-from .views import inicio, login_request,busquedaDepartamentosPorEdificio,buscar,editar_perfil,register,terminosYCondiciones, sobreNosotros,EdificioList,EdificioDetalle,EdificioCreacion,EdificioUpdate,EdificioDelete,DepartamentoList,DepartamentoDetalle,DepartamentoCreacion,DepartamentoUpdate,DepartamentoDelete,InquilinoList,InquilinoDetalle,InquilinoCreacion,InquilinoUpdate,InquilinoDelete
+from .views import inicio, login_request,editar_perfil,register,terminosYCondiciones, sobreNosotros,EdificioList,EdificioDetalle,EdificioCreacion,EdificioUpdate,EdificioDelete,DepartamentoList,DepartamentoDetalle,DepartamentoCreacion,DepartamentoUpdate,DepartamentoDelete,InquilinoList,InquilinoDetalle,InquilinoCreacion,InquilinoUpdate,InquilinoDelete,NoticiaList,NoticiaDetalle,NoticiaCreacion,NoticiaUpdate,NoticiaDelete
 
 
 urlpatterns = [
     path('', inicio, name="Inicio"),
-    path('busqueda-departamentos-por-edificio', busquedaDepartamentosPorEdificio, name = "Busqueda-Departamentos-Por-Edificio"),
-    path('buscar', buscar, name = "Buscar"),
     path('lista-edificios', EdificioList.as_view(), name="ListaEdificios"),
     path('detalle-edificio/<pk>', EdificioDetalle.as_view(), name="DetalleEdificio"),
     path('crear-edificio', EdificioCreacion.as_view(), name="CrearEdificio"),
@@ -30,5 +28,10 @@ urlpatterns = [
     path('editarPerfil', editar_perfil, name="EditarPerfil"),
     path('terminos-y-condiciones', terminosYCondiciones, name="TerminosyCondiciones"),
     path('sobre-nosotros', sobreNosotros, name = "SobreNosotros"),
+    path('lista-noticias', NoticiaList.as_view(), name="ListaNoticias"),
+    path('detalle-noticia/<pk>', NoticiaDetalle.as_view(), name="DetalleNoticia"),
+    path('crear-noticia', NoticiaCreacion.as_view(), name="CrearNoticia"),
+    path('modificar-noticia/<pk>', NoticiaUpdate.as_view(), name="ModificarNoticia"),
+    path('borrar-noticia/<pk>', NoticiaDelete.as_view(), name="BorrarNoticia"),
 ]
 

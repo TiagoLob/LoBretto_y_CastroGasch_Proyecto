@@ -1,0 +1,25 @@
+{% extends "padre.html"%}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+ 
+<br>
+
+<h1> {{noticia.titulo}} </h1>  <p>{{noticia.fecha}}</p>
+
+<h3>{{noticia.subtitulo}}</h3>
+
+<img src="{{noticia.imagen.url}}" alt="noticia">
+
+<br>
+
+<p>{{noticia.cuerpo}}</p>
+
+<br>
+
+<h5>Firma: {{noticia.autor}}</h5>
+
+<p><a href="{% url 'ListaNoticias' %}">Volver a noticias</a></p>
+
+{% endblock %}

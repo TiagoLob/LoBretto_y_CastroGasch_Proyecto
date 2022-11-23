@@ -1,0 +1,20 @@
+{% extends "padre.html"%}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<br>
+
+    <form action="{% url 'BorrarNoticia' noticia.id %}" method="POST"> {% csrf_token %}
+
+        <p> Esta seguro que desea eliminar la noticia? </p>
+
+        <button type="submit">Confirmar</button>
+        <button><a href="{% url 'ListaNoticias' %}">Cancelar</a></button>
+   
+    </form>
+
+<br>
+
+{% endblock %}  

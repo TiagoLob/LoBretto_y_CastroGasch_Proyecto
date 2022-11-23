@@ -15,7 +15,7 @@
         {% for departamento in departamentos %}
         <li>
             <a href ="{% url 'DetalleDepartamento' departamento.id %}">
-           Departamento: {{departamento.piso_Y_Letra}} - En edificio : {{departamento.en_Edificio.nombre}}
+           Departamento: {{departamento.piso_Y_Letra}} - En edificio : {{departamento.en_Edificio.nombre}} 
             </a>
         </li>
         {% if user.is_staff %}
