@@ -1,7 +1,9 @@
-# LoBretto_y_CastroGasch_Proyecto
+# DepAdmin
+# VIDEO DEL PROYECTO => https://youtu.be/SAQb7de7RCs
+*En el link del github aparece solo Lo Bretto y Castro Gasch, pero luego se uniò Rios*
 
-Administrador_De_Edificios es la app.
+Tiago Lo Bretto: Realizó todo lo que tiene que ver con los forms, views y urls.
 
-Como dice en el inicio de la app, en agregar edificio/departamento/inquilino, hay formularios para agregar los elementos mencionados en la base de datos.
+Stefano Castro Gasch: Realizó los models y organizo la Database.
 
-En deptos disponibles se busca el nombre de un edificio y muestra los departamentos del edificio (Proximamente lo vamos a mejorar para que salgan solo los disponibles)
+Tatiana Rios: Se encargó de encontrar el modelo para el front y adecuar los htmls.
