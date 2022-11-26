@@ -1,10 +1,8 @@
 from django.shortcuts import render
 
-from .models import Edificio, Departamento, Inquilino, Avatar, Noticia
+from .models import Edificio, Departamento, Inquilino, Avatar, Noticia, Contacto
 
-from django.http import HttpResponse
-
-from .forms import UserEditForm
+from .forms import UserEditForm, UserRegisterForm
 
 from django.views.generic import ListView
 
@@ -24,9 +22,11 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def inicio(request):
-
-    avatar = Avatar.objects.get(user=request.user)
-    return render (request, "inicio.html", {"url": avatar.imagen.url})
+    try:
+        avatar = Avatar.objects.get(user=request.user)
+        return render (request, "inicio.html", {"url": avatar.imagen.url})
+    except:
+         return render (request, "inicio.html")
 
 class EdificioList(ListView):
 
@@ -188,8 +188,11 @@ def login_request(request):
             if user:
 
                 login (request, user)
-                avatar = Avatar.objects.get(user=request.user)
-                return render(request, "inicio.html", {"mensaje": f'Bienvenido {usuario}', "url": avatar.imagen.url})
+                try:
+                    avatar = Avatar.objects.get(user=request.user)
+                    return render(request, "inicio.html", {"mensaje": f'Bienvenido {usuario}', "url": avatar.imagen.url})
+                except:
+                    return render(request, "inicio.html", {"mensaje": f'Bienvenido {usuario}'})
 
             else:
 
@@ -207,7 +210,7 @@ def register (request):
 
     if request.method == 'POST':
 
-        miFormulario = UserCreationForm(request.POST)
+        miFormulario = UserRegisterForm(request.POST)
 
         if miFormulario.is_valid():
 
@@ -223,7 +226,7 @@ def register (request):
 
     else:
 
-        miFormulario = UserCreationForm()
+        miFormulario = UserRegisterForm()
         
         return render(request, "registro.html", {"miFormulario": miFormulario})
 
@@ -245,6 +248,7 @@ def editar_perfil(request):
             usuario.email = informacion['email']
             usuario.set_password(informacion['password1'])
 
+
             usuario.save()
 
             return render(request, "inicio.html", {"mensaje": f'Datos actualizados'})
@@ -264,3 +268,10 @@ def terminosYCondiciones(request):
 def sobreNosotros(request):
 
     return render (request, "sobreNosotros.html")
+
+class ContactoCreacion(CreateView):
+
+    model = Contacto
+    template_name = "contacto.html"
+    success_url = "/BlogDepAdmin/"
+    fields = ('__all__')

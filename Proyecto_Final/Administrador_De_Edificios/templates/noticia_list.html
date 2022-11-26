@@ -9,12 +9,13 @@
 <h1>Noticias</h1>
 
 <br>
-
+{% if noticias %}
 <ul>
 
         {% for noticia in noticias %}
         <li>
-          <h3>{{noticia.titulo}}</h3> <h5>{{noticia.subtitulo}}</h5><button><a href="{% url 'DetalleNoticia' noticia.id %}">Ver Noticia</a></button>
+          <h3>{{noticia.titulo}}</h3> <p>{{noticia.fecha}}</p>
+          <h5>{{noticia.subtitulo}}</h5><button><a href="{% url 'DetalleNoticia' noticia.id %}">Ver Noticia</a></button>
         </li>
         <br>
         {% if user.is_staff %}
@@ -32,6 +33,9 @@
         {% endfor %}
 
 </ul>
+{% else %}
+<p> No hay noticias <p>
+{% endif %}
 
 {% if user.is_staff %}
 <button><a href="{% url 'CrearNoticia'%}"> Agregar noticia </a></button>

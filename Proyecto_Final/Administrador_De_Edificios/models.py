@@ -25,7 +25,7 @@ class Departamento(models.Model):
     esta_Ocupado = models.BooleanField()
 
     def __str__(self):
-        return f"En edificio: {self.en_Edificio} - Piso y Letra: {self.piso_Y_Letra} - Cantidad de ambientes: {self.cantidad_De_Ambientes} - Esta Ocupado (True = Si): {self.esta_Ocupado}"
+        return f"En edificio: {self.en_Edificio.nombre} - Piso y Letra: {self.piso_Y_Letra} - Cantidad de ambientes: {self.cantidad_De_Ambientes} - Esta Ocupado (True = Si): {self.esta_Ocupado}"
 
     class Meta:
         ordering = ['en_Edificio', 'piso_Y_Letra']
@@ -42,7 +42,7 @@ class Inquilino(models.Model):
    
 
     def __str__(self):
-        return f"Nombre: {self.nombre} - Apellido: {self.apellido} - Celular: {self.celular} - Mail: {self.mail} - Profesion: {self.profesion} - Vive en el edificio: {self.vive_En_Edificio} - Vive en el departamento: {self.vive_En_Departamento}"
+        return f"Nombre: {self.nombre} - Apellido: {self.apellido} - Celular: {self.celular} - Mail: {self.mail} - Profesion: {self.profesion} - Vive en el edificio: {self.vive_En_Edificio.nombre} - Vive en el departamento: {self.vive_En_Departamento.piso_Y_Letra}"
 
     class Meta:
         ordering = ['vive_En_Edificio','apellido', 'nombre']
@@ -59,7 +59,15 @@ class Noticia(models.Model):
     cuerpo = models.TextField()
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
     fecha = models.DateField()
-    imagen = models.ImageField(upload_to='noticias', null=True, blank=True)
+    imagen = models.ImageField(upload_to='noticias')
 
     class Meta:
         ordering = ['-fecha']
+
+class Contacto(models.Model):
+    nombre = models.CharField(max_length=30)
+    mail = models.EmailField()
+    texto = models.TextField()
+
+    def __str__(self):
+        return f"Nombre: {self.nombre} - Mail: {self.mail}"

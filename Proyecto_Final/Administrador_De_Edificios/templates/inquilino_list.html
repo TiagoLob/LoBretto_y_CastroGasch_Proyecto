@@ -9,7 +9,7 @@
 <h1>Lista de Inquilinos </h1>
 
 <br>
-
+{% if inquilinos %}
 <ul>
 
         {% for inquilino in inquilinos %}
@@ -32,7 +32,9 @@
         {% endfor %}
 
 </ul>
-
+{% else %}
+<p> No hay inquilinos <p>
+{% endif %}
 <button><a href="{% url 'CrearInquilino'%}"> Añadir un inquilino </a></button>
 
 <br>

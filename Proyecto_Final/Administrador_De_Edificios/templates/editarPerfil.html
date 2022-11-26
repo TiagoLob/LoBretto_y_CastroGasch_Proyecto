@@ -7,19 +7,15 @@
 <br>
 
 <h1>Editando perfil de {{usuario}}</h1>
+<p>En caso de querer un avatar, contactarse con el administrador</p>
 
-<br>
-
-    <form action="" method="POST"> {% csrf_token %}
+    <form action="" method="POST" enctype="multipart/form-data"> {% csrf_token %}
 
         <table>
 
             {{ miFormulario.as_table }}
         
         </table>
-
-        {{mensaje}}
-        
         <input type="submit", value="Actualizar">
 
     </form>

@@ -9,7 +9,7 @@
 <h1>Lista de Departamentos </h1>
 
 <br>
-
+{% if departamentos %}
 <ul>
 
         {% for departamento in departamentos %}
@@ -34,7 +34,9 @@
         {% endfor %}
 
 </ul>
-
+{% else %}
+<p> No hay departamentos <p>
+{% endif %}
 {% if user.is_staff %}
 
 <button><a href="{% url 'CrearDepartamento'%}"> Añadir un departamento </a></button>

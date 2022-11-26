@@ -9,7 +9,7 @@
 <h1>Lista de Edificios </h1>
 
 <br>
-
+{% if edificios %}
 <ul>
 
         {% for edificio in edificios %}
@@ -33,7 +33,9 @@
         {% endfor %}
 
 </ul>
-
+{% else %}
+<p> No hay edificios <p>
+{% endif %}
 {% if user.is_staff %}
 <button><a href="{% url 'CrearEdificio'%}"> Añadir un edificio </a></button>
 {% endif %}

@@ -2,7 +2,7 @@ from django.urls import path
 
 from django.contrib.auth.views import LogoutView
 
-from .views import inicio, login_request,editar_perfil,register,terminosYCondiciones, sobreNosotros,EdificioList,EdificioDetalle,EdificioCreacion,EdificioUpdate,EdificioDelete,DepartamentoList,DepartamentoDetalle,DepartamentoCreacion,DepartamentoUpdate,DepartamentoDelete,InquilinoList,InquilinoDetalle,InquilinoCreacion,InquilinoUpdate,InquilinoDelete,NoticiaList,NoticiaDetalle,NoticiaCreacion,NoticiaUpdate,NoticiaDelete
+from .views import inicio, login_request,editar_perfil,register,terminosYCondiciones, sobreNosotros,EdificioList,EdificioDetalle,EdificioCreacion,EdificioUpdate,EdificioDelete,DepartamentoList,DepartamentoDetalle,DepartamentoCreacion,DepartamentoUpdate,DepartamentoDelete,InquilinoList,InquilinoDetalle,InquilinoCreacion,InquilinoUpdate,InquilinoDelete,NoticiaList,NoticiaDetalle,NoticiaCreacion,NoticiaUpdate,NoticiaDelete,ContactoCreacion
 
 
 urlpatterns = [
@@ -33,5 +33,6 @@ urlpatterns = [
     path('crear-noticia', NoticiaCreacion.as_view(), name="CrearNoticia"),
     path('modificar-noticia/<pk>', NoticiaUpdate.as_view(), name="ModificarNoticia"),
     path('borrar-noticia/<pk>', NoticiaDelete.as_view(), name="BorrarNoticia"),
+    path('contacto',ContactoCreacion.as_view(), name="Contacto")
 ]
 

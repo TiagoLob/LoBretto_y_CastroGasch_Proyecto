@@ -6,7 +6,7 @@
 
 <br>
 
-    <form action="{% url 'CrearNoticia' %}" method="POST"> {% csrf_token %}
+    <form action="{% url 'CrearNoticia' %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
 
         {{ form.as_p }}
 
